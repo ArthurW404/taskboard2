@@ -9,7 +9,7 @@ Second iteration of I'm Board taskboard which uses MERN stack (Decision to use M
 - user accounts for private or shared boards
 - everything version 1 can do and more
 
-## lessions learnt from first version
+## lessons learnt from first version
 
 - not seperating client (frontend) and server (backend) resulted in difficulty in changing frontend
   - plans to change front end to react resulted in many difficulties, with backend requiring a lot of change
