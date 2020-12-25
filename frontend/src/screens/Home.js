@@ -19,7 +19,14 @@ const Home = (props) => {
   }, []);
 
   const boardsView = boards.map((board) => {
-    return <BoardCard key={board.id} name={board.name} image={board.image} />;
+    return (
+      <BoardCard
+        key={board.id}
+        name={board.name}
+        image={board.image}
+        switchToBoard={props.switchToBoard}
+      />
+    );
   });
 
   return (

@@ -19,8 +19,7 @@ const Login = (props) => {
 const styles = {
   login: {
     // border: "1px black solid",
-    margin: "auto",
-    marginBottom: "20rem",
+    margin: "20rem auto",
     border: " 3px solid green",
     width: "35%",
     padding: 10,

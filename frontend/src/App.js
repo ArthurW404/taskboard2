@@ -18,7 +18,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(checkIsLoggedIn());
 
   const switchToHome = () => {
-    setScreen(<Home />);
+    setScreen(<Home switchToBoard={switchToBoard} />);
   };
 
   const switchToLogin = () => {
@@ -28,6 +28,7 @@ function App() {
   };
 
   const switchToBoard = () => {
+    console.log("switching to board");
     setScreen(<Board />);
   };
 
