@@ -1,11 +1,10 @@
-import logo from "./logo.svg";
-import "./App.css";
-import Login from "./screens/Login";
-import Home from "./screens/Home";
-import Board from "./screens/Board";
+// import "./App.css";
+import Login from "./pages/Login";
+import Home from "./pages/Home";
+import Board from "./pages/Board";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 const checkIsLoggedIn = () => {
   return false;
@@ -27,10 +26,10 @@ function App() {
     );
   };
 
-  const switchToBoard = () => {
+  const switchToBoard = useCallback(() => {
     console.log("switching to board");
     setScreen(<Board />);
-  };
+  }, []);
 
   const logout = () => {
     switchToLogin();
