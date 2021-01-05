@@ -28,7 +28,7 @@ const LoginForm = (props) => {
   };
 
   return (
-    <div>
+    <>
       <label>Username:</label>
       <input
         type="text"
@@ -45,7 +45,7 @@ const LoginForm = (props) => {
       <br />
       {isIncorrect ? <p>Username or password is incorrect</p> : null}
       <input type="submit" value="Submit" onClick={handleSubmit} />
-    </div>
+    </>
   );
 };
 

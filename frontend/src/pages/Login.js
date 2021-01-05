@@ -6,10 +6,7 @@ import constants from "../constants";
 const Login = (props) => {
   return (
     <div style={styles.login}>
-      <LoginForm
-        switchToHome={props.switchToHome}
-        setIsLoggedIn={props.setIsLoggedIn}
-      />
+      <LoginForm />
       <div>Sign up</div>
       <div>Forgot password</div>
     </div>

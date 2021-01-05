@@ -9,6 +9,10 @@ Second iteration of I'm Board taskboard which uses MERN stack (Decision to use M
 - user accounts for private or shared boards
 - everything version 1 can do and more
 
+## Authentication and Authorisation
+
+- Using JWT for authorisation
+
 ## lessons learnt from first version
 
 - not seperating client (frontend) and server (backend) resulted in difficulty in changing frontend

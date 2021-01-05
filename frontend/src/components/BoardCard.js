@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import constants from "../constants";
 
 const BoardCard = (props) => {
@@ -7,19 +8,19 @@ const BoardCard = (props) => {
   const [isMouseOver, setIsMouseOver] = useState(false);
 
   return (
-    <div
+    <Link
       className="card"
       style={{ backgroundColor: isMouseOver ? constants.hoverColor : "white" }}
       onMouseEnter={() => setIsMouseOver(true)}
       onMouseLeave={() => setIsMouseOver(false)}
-      onClick={props.switchToBoard}
+      to="/board"
     >
       <img src={props.image} className="card-img-top" alt="..." style={image} />
       <div className="card-body">
         <h5 className="card-title">{props.name}</h5>
         <p className="card-text">{props.description}</p>
       </div>
-    </div>
+    </Link>
   );
 };
 

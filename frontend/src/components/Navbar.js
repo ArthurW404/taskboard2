@@ -1,17 +1,15 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = (props) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <div className="navbar-brand" onClick={props.switchToHome}>
+      <Link className="navbar-brand" to="/">
         Home
-      </div>
-      <button
-        className="btn btn-outline-danger my-2 my-sm-0"
-        onClick={props.logout}
-      >
+      </Link>
+      <Link className="btn btn-outline-danger my-2 my-sm-0" to="/login">
         logout
-      </button>
+      </Link>
     </nav>
   );
 };
