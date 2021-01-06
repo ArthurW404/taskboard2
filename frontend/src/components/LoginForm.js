@@ -1,9 +1,14 @@
 import React, { useState } from "react";
+import { Redirect } from "react-router-dom";
 
 const LoginForm = (props) => {
   const [username, setUsername] = useState("");
+
   const [password, setPassword] = useState("");
+
   const [isIncorrect, setIsIncorrect] = useState(false);
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const login = (username, password) => {
     return true;
@@ -17,8 +22,7 @@ const LoginForm = (props) => {
     if (loginSuccess) {
       // switch to account screen
       console.log("logged in");
-      props.setIsLoggedIn(true);
-      props.switchToHome();
+      setIsLoggedIn(true);
     } else {
       console.log("wrong pass");
       // stay in login
@@ -29,6 +33,7 @@ const LoginForm = (props) => {
 
   return (
     <>
+      {isLoggedIn && <Redirect to="/boards" />}
       <label>Username:</label>
       <input
         type="text"

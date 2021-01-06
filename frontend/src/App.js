@@ -4,59 +4,59 @@ import Home from "./pages/Home";
 import Board from "./pages/Board";
 import ErrorPage from "./pages/ErrorPage";
 import Boards from "./pages/Boards";
+
+// import { Login } from "./components";
+
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
 import React, { useEffect, useState } from "react";
 
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+  Link,
+} from "react-router-dom";
 
-const checkIsLoggedIn = () => {
-  return false;
-};
-
-const Context = React.createContext();
+import Context from "./RootContext";
 
 function App() {
-  console.log("Starting App");
-
-  // const [screen, setScreen] = useState(null);
-  const [isLoggedIn, setIsLoggedIn] = useState(checkIsLoggedIn());
-
-  // const switchToHome = () => {
-  //   setScreen(<Home switchToBoard={switchToBoard} />);
-  // };
-
-  // const switchToLogin = () => {
-  //   setScreen(
-  //     <Login switchToHome={switchToHome} setIsLoggedIn={setIsLoggedIn} />
-  //   );
-  // };
-
-  // const switchToBoard = useCallback(() => {
-  //   console.log("switching to board");
-  //   setScreen(<Board />);
-  // }, []);
+  const [jwt, setJwt] = useState();
 
   useEffect(() => {
+    console.log("Starting App");
+
     let storage = window.localStorage;
-    storage.getItem("");
+    const val = storage.getItem("jwt");
+    setJwt(val);
   }, []);
 
-  // const logout = () => {
-  //   // switchToLogin();
-  //   setIsLoggedIn(false);
-  // };
-
-  // useEffect(() => {
-  //   // passing switchToHome function to login screen right after initial render
-  //   switchToLogin();
-  // }, []);
-
   return (
-    <Context.Provider>
+    <Context.Provider value={{ isLoggedIn: false }}>
       <Router>
-        {isLoggedIn ? <Navbar /> : null}
+        {
+          /*
+            TODO
+            If jwt is not available or expired, go to login
+          */
+          jwt || <Redirect to="/login" />
+        }
+
+        <Navbar>
+          <Link className="navbar-brand" to="/">
+            Home
+          </Link>
+          <Link className="btn" to="/boards">
+            Boards
+          </Link>
+          <Link className="btn btn-outline-danger my-2 my-sm-0" to="/login">
+            logout
+          </Link>
+        </Navbar>
+
+        {/* {isLoggedIn ? <Navbar />  : null} */}
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/board" component={Board} />
@@ -68,22 +68,6 @@ function App() {
       </Router>
     </Context.Provider>
   );
-  // <div className="App">
-  //   <header className="App-header">
-  //     <img src={logo} className="App-logo" alt="logo" />
-  //     <p>
-  //       Edit <code>src/App.js</code> and save to reload.
-  //     </p>
-  //     <a
-  //       className="App-link"
-  //       href="https://reactjs.org"
-  //       target="_blank"
-  //       rel="noopener noreferrer"
-  //     >
-  //       Learn React
-  //     </a>
-  //   </header>
-  // </div>
 }
 
 export default App;
