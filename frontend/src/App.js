@@ -20,28 +20,22 @@ import {
   Link,
 } from "react-router-dom";
 
-import Context from "./RootContext";
+import AuthContext from "./AuthContext";
+import Signup from "./pages/Signup";
+import ForgotPassword from "./pages/ForgotPassword";
 
 function App() {
-  const [jwt, setJwt] = useState();
-
-  useEffect(() => {
-    console.log("Starting App");
-
-    let storage = window.localStorage;
-    const val = storage.getItem("jwt");
-    setJwt(val);
-  }, []);
+  const [jwt, setJwt] = useState(localStorage.getItem("jwt"));
 
   return (
-    <Context.Provider value={{ isLoggedIn: false }}>
+    <AuthContext.Provider value={{ jwt, setJwt }}>
       <Router>
         {
           /*
             TODO
             If jwt is not available or expired, go to login
           */
-          jwt || <Redirect to="/login" />
+          jwt ? null : <Redirect to="/login" />
         }
 
         <Navbar>
@@ -62,11 +56,13 @@ function App() {
           <Route exact path="/board" component={Board} />
           <Route exact path="/boards" component={Boards} />
           <Route exact path="/login" component={Login} />
+          <Route exact path="/signup" component={Signup} />
+          <Route exact path="/forgotPassword" component={ForgotPassword} />
           <Route path="*" component={ErrorPage} />
         </Switch>
         <Footer />
       </Router>
-    </Context.Provider>
+    </AuthContext.Provider>
   );
 }
 

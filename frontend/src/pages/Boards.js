@@ -3,8 +3,7 @@
  */
 import React, { useEffect, useState } from "react";
 import BoardCard from "../components/BoardCard";
-
-const url = "http://localhost:5000";
+import url from "../backend";
 
 const Home = (props) => {
   const [boards, setBoards] = useState([]);

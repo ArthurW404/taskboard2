@@ -1,12 +1,17 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import LoginForm from "../components/LoginForm";
 
 const Login = (props) => {
   return (
     <div>
       <LoginForm />
-      <p className="btn btn-link">Sign up</p>
-      <p className="btn btn-link">Forgot password</p>
+      <Link to="/signup" className="btn btn-link">
+        Sign up
+      </Link>
+      <Link to="/forgotPassword" className="btn btn-link">
+        Forgot password
+      </Link>
     </div>
   );
 };

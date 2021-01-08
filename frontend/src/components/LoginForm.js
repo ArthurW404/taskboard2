@@ -1,7 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Redirect } from "react-router-dom";
+import url from "../backend";
+import AuthContext from "../AuthContext";
 
 const LoginForm = (props) => {
+  const jwt = useContext(AuthContext);
+  console.log(jwt);
+
   const [username, setUsername] = useState("");
 
   const [password, setPassword] = useState("");
@@ -10,25 +15,36 @@ const LoginForm = (props) => {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const login = (username, password) => {
-    return true;
-  };
-
   const handleSubmit = (event) => {
     console.log(username, password);
     // send backend data
-    const loginSuccess = login(username, password);
+    const content = {
+      username,
+      password,
+    };
 
-    if (loginSuccess) {
-      // switch to account screen
-      console.log("logged in");
-      setIsLoggedIn(true);
-    } else {
-      console.log("wrong pass");
-      // stay in login
-      setPassword("");
-      setIsIncorrect(true);
-    }
+    fetch(url + "/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+      },
+      body: JSON.stringify(content),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        jwt.setJwt(data);
+        if (data) {
+          // switch to account screen
+          console.log("logged in");
+          setIsLoggedIn(true);
+        } else {
+          console.log("wrong pass");
+          // stay in login
+          setPassword("");
+          setIsIncorrect(true);
+        }
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
