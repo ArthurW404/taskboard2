@@ -11,6 +11,8 @@ const Signup = () => {
       <br />
       <label>Confirm Password:</label>
       <input type="text" />
+      <br />
+
       <input type="submit" />
     </>
   );

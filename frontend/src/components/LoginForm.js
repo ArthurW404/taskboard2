@@ -32,7 +32,7 @@ const LoginForm = (props) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        jwt.setJwt(data);
+        jwt.saveJwt(data);
         if (data) {
           // switch to account screen
           console.log("logged in");
@@ -59,7 +59,7 @@ const LoginForm = (props) => {
       <br />
       <label>Password:</label>
       <input
-        type="text"
+        type="password"
         value={password}
         onChange={(event) => setPassword(event.target.value)}
       />

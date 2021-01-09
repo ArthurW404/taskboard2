@@ -27,14 +27,21 @@ import ForgotPassword from "./pages/ForgotPassword";
 function App() {
   const [jwt, setJwt] = useState(localStorage.getItem("jwt"));
 
+  const saveJwt = (newJwt) => {
+    setJwt(newJwt);
+    localStorage.setItem("jwt", newJwt);
+  };
+
+  const removeJwt = () => {
+    localStorage.removeItem("jwt");
+  };
+
   return (
-    <AuthContext.Provider value={{ jwt, setJwt }}>
+    <AuthContext.Provider value={{ jwt, saveJwt }}>
       <Router>
         {
-          /*
-            TODO
-            If jwt is not available or expired, go to login
-          */
+          // TODO
+          // If jwt is not available or expired, go to login
           jwt ? null : <Redirect to="/login" />
         }
 
@@ -45,9 +52,18 @@ function App() {
           <Link className="btn" to="/boards">
             Boards
           </Link>
-          <Link className="btn btn-outline-danger my-2 my-sm-0" to="/login">
-            logout
-          </Link>
+          {
+            // don't render logout if not logged in
+            jwt ? (
+              <Link
+                className="btn btn-outline-danger my-2 my-sm-0"
+                to="/login"
+                onClick={removeJwt}
+              >
+                logout
+              </Link>
+            ) : null
+          }
         </Navbar>
 
         {/* {isLoggedIn ? <Navbar />  : null} */}

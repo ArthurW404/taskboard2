@@ -11,6 +11,7 @@ Second iteration of I'm Board taskboard which uses MERN stack (Decision to use M
 
 ## Authentication and Authorisation
 
+- password hashed on client side using SHA256
 - Using JWT for authorisation
 
 ## lessons learnt from first version
