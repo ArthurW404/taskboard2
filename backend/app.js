@@ -20,32 +20,32 @@ app.post("/login", (req, res) => {
   console.log(token);
 
   // test decoding
-  // const decoded = jwt.verify(token, privateKey);
-  // console.log(decoded);
+  const decoded = jwt.verify(token, privateKey);
+  console.log(decoded);
 
   // return to client jwt if login credentials are correct
   res.json(token);
 });
 
-app.get("/getBoard", (req, res) => {
+app.get("/Boards", (req, res) => {
   const data = [
     {
-      name: "fk",
+      name: "1",
       id: 1,
       image: "https://www.bizreport.com/2011/02/03/android-logo-200x200.jpg",
     },
     {
-      name: "fk",
+      name: "2",
       id: 2,
       image: "https://www.bizreport.com/2011/02/03/android-logo-200x200.jpg",
     },
     {
-      name: "fk",
+      name: "3",
       id: 3,
       image: "https://www.bizreport.com/2011/02/03/android-logo-200x200.jpg",
     },
     {
-      name: "fk",
+      name: "4",
       id: 4,
       image: "https://www.bizreport.com/2011/02/03/android-logo-200x200.jpg",
     },

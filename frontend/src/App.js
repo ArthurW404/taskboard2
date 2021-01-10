@@ -33,6 +33,7 @@ function App() {
   };
 
   const removeJwt = () => {
+    setJwt("");
     localStorage.removeItem("jwt");
   };
 

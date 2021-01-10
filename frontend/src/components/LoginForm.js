@@ -2,10 +2,10 @@ import React, { useContext, useState } from "react";
 import { Redirect } from "react-router-dom";
 import url from "../backend";
 import AuthContext from "../AuthContext";
+import sha256 from "../utils/sha256";
 
 const LoginForm = (props) => {
   const jwt = useContext(AuthContext);
-  console.log(jwt);
 
   const [username, setUsername] = useState("");
 
@@ -15,12 +15,13 @@ const LoginForm = (props) => {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     console.log(username, password);
     // send backend data
+
     const content = {
       username,
-      password,
+      password: await sha256(password),
     };
 
     fetch(url + "/login", {
@@ -65,7 +66,7 @@ const LoginForm = (props) => {
       />
       <br />
       {isIncorrect ? <p>Username or password is incorrect</p> : null}
-      <input type="submit" value="Submit" onClick={handleSubmit} />
+      <input type="submit" value="Submit" onClick={(e) => handleSubmit(e)} />
     </>
   );
 };
