@@ -1,7 +1,10 @@
 import React, { useContext, useState } from "react";
 import { Redirect } from "react-router-dom";
+import { Button } from "react-bootstrap";
+
 import url from "../backend";
 import AuthContext from "../AuthContext";
+
 import sha256 from "../utils/sha256";
 
 const LoginForm = (props) => {
@@ -66,7 +69,14 @@ const LoginForm = (props) => {
       />
       <br />
       {isIncorrect ? <p>Username or password is incorrect</p> : null}
-      <input type="submit" value="Submit" onClick={(e) => handleSubmit(e)} />
+      <Button
+        variant="primary"
+        as="input"
+        type="submit"
+        value="Submit"
+        onClick={(e) => handleSubmit(e)}
+      />
+      {/* <input type="submit" value="Submit" onClick={(e) => handleSubmit(e)} /> */}
     </>
   );
 };

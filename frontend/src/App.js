@@ -23,6 +23,7 @@ import {
 import AuthContext from "./AuthContext";
 import Signup from "./pages/Signup";
 import ForgotPassword from "./pages/ForgotPassword";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   const [jwt, setJwt] = useState(localStorage.getItem("jwt"));
@@ -43,35 +44,55 @@ function App() {
         {
           // TODO
           // If jwt is not available or expired, go to login
-          jwt ? null : <Redirect to="/login" />
+          // jwt ? null : <Redirect to="/login" />
         }
 
         <Navbar>
-          <Link className="navbar-brand" to="/">
-            Home
-          </Link>
-          <Link className="btn" to="/boards">
-            Boards
-          </Link>
           {
             // don't render logout if not logged in
             jwt ? (
+              <>
+                <Link className="navbar-brand" to="/">
+                  Home
+                </Link>
+                <Link className="btn" to="/boards">
+                  Boards
+                </Link>
+                <Link
+                  className="btn btn-outline-danger my-2 my-sm-0"
+                  to="/login"
+                  onClick={removeJwt}
+                >
+                  logout
+                </Link>
+              </>
+            ) : (
               <Link
-                className="btn btn-outline-danger my-2 my-sm-0"
+                className="btn btn-outline-primary my-2 my-sm-0"
                 to="/login"
-                onClick={removeJwt}
+                // onClick={removeJwt}
               >
-                logout
+                login
               </Link>
-            ) : null
+            )
           }
         </Navbar>
 
         {/* {isLoggedIn ? <Navbar />  : null} */}
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/board" component={Board} />
-          <Route exact path="/boards" component={Boards} />
+          <ProtectedRoute
+            redirectTo="/login"
+            exact
+            path="/board"
+            component={Board}
+          />
+          <ProtectedRoute
+            redirectTo="/login"
+            exact
+            path="/boards"
+            component={Boards}
+          />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/forgotPassword" component={ForgotPassword} />

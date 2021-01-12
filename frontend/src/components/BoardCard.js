@@ -11,7 +11,7 @@ const BoardCard = (props) => {
       className="card"
       // onMouseEnter={() => setIsMouseOver(true)}
       // onMouseLeave={() => setIsMouseOver(false)}
-      style={{ width: "18rem" }}
+      style={{ width: "50%" }}
       to="/board"
     >
       <img src={props.image} className="card-img-top" alt="..." />

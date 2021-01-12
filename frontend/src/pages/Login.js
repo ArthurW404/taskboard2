@@ -1,10 +1,11 @@
 import React from "react";
+import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import LoginForm from "../components/LoginForm";
 
 const Login = (props) => {
   return (
-    <div>
+    <Container>
       <LoginForm />
       <Link to="/signup" className="btn btn-link">
         Sign up
@@ -12,7 +13,7 @@ const Login = (props) => {
       <Link to="/forgotPassword" className="btn btn-link">
         Forgot password
       </Link>
-    </div>
+    </Container>
   );
 };
 

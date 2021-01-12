@@ -1,8 +1,9 @@
 import React from "react";
+import { Button, Container } from "react-bootstrap";
 
 const Signup = () => {
   return (
-    <>
+    <Container>
       <label>New Email:</label>
       <input type="text" />
       <br />
@@ -13,8 +14,8 @@ const Signup = () => {
       <input type="text" />
       <br />
 
-      <input type="submit" />
-    </>
+      <Button as="input" type="submit" />
+    </Container>
   );
 };
 

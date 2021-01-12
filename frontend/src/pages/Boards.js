@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import BoardCard from "../components/BoardCard";
 import url from "../backend";
 import useFetch from "../hooks/useFetch";
+import { Container } from "react-bootstrap";
 
 const Home = (props) => {
   // const [boards, setBoards] = useState([]);
@@ -25,11 +26,10 @@ const Home = (props) => {
     });
 
   return (
-    <>
+    <Container>
       Boards page
       {boardsView}
-      <div></div>
-    </>
+    </Container>
   );
 };
 
