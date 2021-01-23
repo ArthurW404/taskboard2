@@ -28,6 +28,8 @@ import ProtectedRoute from "./components/ProtectedRoute";
 function App() {
   const [jwt, setJwt] = useState(localStorage.getItem("jwt"));
 
+  const [isFirstLoad, setIsFirstLoad] = useState(true);
+
   const saveJwt = (newJwt) => {
     setJwt(newJwt);
     localStorage.setItem("jwt", newJwt);
@@ -38,13 +40,17 @@ function App() {
     localStorage.removeItem("jwt");
   };
 
+  useEffect(() => {
+    setIsFirstLoad(false);
+  }, []);
+
   return (
     <AuthContext.Provider value={{ jwt, saveJwt }}>
       <Router>
         {
           // TODO
           // If jwt is not available or expired, go to login
-          // jwt ? null : <Redirect to="/login" />
+          //isFirstLoad && jwt ? null : <Redirect to="/login" />
         }
 
         <Navbar>

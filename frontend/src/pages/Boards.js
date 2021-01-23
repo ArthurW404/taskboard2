@@ -1,7 +1,7 @@
 /**
  * Screen which appears after user successfully logs in
  */
-import React, { useEffect, useState } from "react";
+import React from "react";
 import BoardCard from "../components/BoardCard";
 import url from "../backend";
 import useFetch from "../hooks/useFetch";

@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Container } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
+import authContext from "../AuthContext";
 import LoginForm from "../components/LoginForm";
 
 const Login = (props) => {
+  const jwt = useContext(authContext);
   return (
     <Container>
+      {jwt.jwt ? <Redirect to="/boards" /> : null}
       <LoginForm />
       <Link to="/signup" className="btn btn-link">
         Sign up

@@ -5,7 +5,11 @@ import Context from "../AuthContext";
 
 const ProtectedRoute = (props) => {
   const context = useContext(Context);
-  return <>{context.jwt ? <Route {...props} /> : <Redirect to="/login" />}</>;
+  return (
+    <>
+      {context.jwt ? <Route {...props} /> : <Redirect to={props.redirectTo} />}
+    </>
+  );
 };
 
 export default ProtectedRoute;

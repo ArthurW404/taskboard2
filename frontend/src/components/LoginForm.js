@@ -5,7 +5,9 @@ import { Button } from "react-bootstrap";
 import url from "../backend";
 import AuthContext from "../AuthContext";
 
+import post from "../utils/post";
 import sha256 from "../utils/sha256";
+import CheckBox from "./CheckBox";
 
 const LoginForm = (props) => {
   const jwt = useContext(AuthContext);
@@ -18,6 +20,8 @@ const LoginForm = (props) => {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  const [showPassword, setShowPassword] = useState(false);
+
   const handleSubmit = async (event) => {
     console.log(username, password);
     // send backend data
@@ -26,29 +30,19 @@ const LoginForm = (props) => {
       username,
       password: await sha256(password),
     };
+    const data = await post(url + "/login", content);
 
-    fetch(url + "/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json;charset=utf-8",
-      },
-      body: JSON.stringify(content),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        jwt.saveJwt(data);
-        if (data) {
-          // switch to account screen
-          console.log("logged in");
-          setIsLoggedIn(true);
-        } else {
-          console.log("wrong pass");
-          // stay in login
-          setPassword("");
-          setIsIncorrect(true);
-        }
-      })
-      .catch((err) => console.log(err));
+    jwt.saveJwt(data.jwt);
+    if (data.jwt) {
+      // switch to account screen
+      console.log("logged in");
+      setIsLoggedIn(true);
+    } else {
+      console.log("wrong pass");
+      // stay in login
+      setPassword("");
+      setIsIncorrect(true);
+    }
   };
 
   return (
@@ -63,12 +57,19 @@ const LoginForm = (props) => {
       <br />
       <label>Password:</label>
       <input
-        type="password"
+        type={showPassword ? "text" : "password"}
         value={password}
         onChange={(event) => setPassword(event.target.value)}
       />
       <br />
       {isIncorrect ? <p>Username or password is incorrect</p> : null}
+      <CheckBox
+        label="Show password"
+        state={showPassword}
+        setState={setShowPassword}
+      />
+      <br />
+
       <Button
         variant="primary"
         as="input"

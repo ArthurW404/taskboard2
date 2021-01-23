@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 
-const { login } = require("./auth");
+const { login, signup } = require("./auth");
 
 const app = express();
 const port = 5000;
@@ -20,6 +20,12 @@ app.post("/login", (req, res) => {
   // check user is valid
   const { username, password } = req.body;
   res.json(login(username, password));
+});
+
+app.post("/signup", (req, res) => {
+  // check user
+  const { newUser, password } = req.body;
+  res.json(signup(newUser, password));
 });
 
 app.get("/boards", (req, res) => {
