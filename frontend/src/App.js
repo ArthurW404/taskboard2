@@ -10,15 +10,9 @@ import Boards from "./pages/Boards";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-  Link,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import AuthContext from "./AuthContext";
 import Signup from "./pages/Signup";
@@ -28,7 +22,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 function App() {
   const [jwt, setJwt] = useState(localStorage.getItem("jwt"));
 
-  const [isFirstLoad, setIsFirstLoad] = useState(true);
+  // const [isFirstLoad, setIsFirstLoad] = useState(true);
 
   const saveJwt = (newJwt) => {
     setJwt(newJwt);
@@ -40,9 +34,9 @@ function App() {
     localStorage.removeItem("jwt");
   };
 
-  useEffect(() => {
-    setIsFirstLoad(false);
-  }, []);
+  // useEffect(() => {
+  //   setIsFirstLoad(false);
+  // }, []);
 
   return (
     <AuthContext.Provider value={{ jwt, saveJwt }}>
@@ -50,7 +44,7 @@ function App() {
         {
           // TODO
           // If jwt is not available or expired, go to login
-          //isFirstLoad && jwt ? null : <Redirect to="/login" />
+          // sisFirstLoad && jwt ? null : <Redirect to="/login" />
         }
 
         <Navbar>

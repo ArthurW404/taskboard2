@@ -1,8 +1,9 @@
 // not using database to store data for now
 
 const fs = require("fs");
-const dbName = "db.json";
-
+const dbFolder = "db"; // Currently, db folder must be manually created in backend/ folder
+const dbName = dbFolder + "/db.json";
+console.log(dbName);
 let globalVars = {
   updated: false,
 };
@@ -59,6 +60,9 @@ const addUser = (username, password) => {
   console.log("users", typeof db);
   console.log("db", db);
   db.users.push({ username, password });
+  console.log("users", db.users);
+  // create new file for user's stuff
+  createNewFile(dbFolder + "/" + username + ".json", { boards: [] });
 };
 
 const userIsValid = (username, password) => {
@@ -71,7 +75,18 @@ const userIsValid = (username, password) => {
   return isValid;
 };
 
+const userExists = (username) => {
+  let isExist = false;
+  db.users.forEach((user) => {
+    if (user.username === username) {
+      isExist = true;
+    }
+  });
+  return isExist;
+};
+
 // API for accessing database interface
 
 exports.userIsValid = userIsValid;
 exports.addUser = addUser;
+exports.userExists = userExists;

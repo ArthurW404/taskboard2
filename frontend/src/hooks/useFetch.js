@@ -8,7 +8,7 @@ const useFetch = (url, options = {}) => {
       .then((resp) => resp.json())
       .then((data) => setData(data))
       .catch((err) => console.log("error: " + err));
-  }, [url, options]);
+  }, []);
 
   return data;
 };

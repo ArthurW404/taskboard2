@@ -1,7 +1,19 @@
 const jwt = require("jsonwebtoken");
-const { addUser, userIsValid } = require("./database");
+const { addUser, userIsValid, userExists } = require("./database");
 
 const privateKey = "test private key";
+
+// Verifies if token is valid and returns username
+exports.verify = (token) => {
+  // test decoding
+  const decoded = jwt.verify(token, privateKey);
+  console.log(decoded);
+  if (decoded.username === undefined) {
+    return false;
+  } else {
+    return decoded.username;
+  }
+};
 
 exports.login = (username, password) => {
   let result;
@@ -26,6 +38,9 @@ exports.login = (username, password) => {
 
 exports.signup = (newUser, password) => {
   // check if user already exists
+  if (userExists(newUser)) {
+    return "";
+  }
   console.log(newUser, password);
   addUser(newUser, password);
   const token = jwt.sign({ newUser, password }, privateKey);
