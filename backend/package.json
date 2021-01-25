@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "DEBUG=express:* nodemon  --ignore './db/' ./src/app.js"
+    "start": "DEBUG=express:* node ./src/app.js"
   },
   "author": "Arthur Wang",
   "license": "ISC",

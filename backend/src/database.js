@@ -27,7 +27,7 @@ function checkFileExistsSync(filepath) {
 // get data
 let db;
 if (checkFileExistsSync(dbName)) {
-  rawData = fs.readFileSync(dbName, "utf-8");
+  const rawData = fs.readFileSync(dbName, "utf-8");
   console.log(rawData);
   db = JSON.parse(rawData);
 } else {
@@ -85,8 +85,24 @@ const userExists = (username) => {
   return isExist;
 };
 
+// given an user, return all data for user
+const getUserData = (username) => {
+  const fileName = dbFolder + "/" + username + ".json";
+  const rawData = fs.readFileSync(fileName, "utf-8");
+  const processedData = JSON.parse(rawData);
+  console.log(processedData);
+  return processedData;
+};
+
+const saveUserData = (username, data) => {
+  const fileName = dbFolder + "/" + username + ".json";
+  fs.writeFileSync(fileName, data, "utf-8");
+};
+
 // API for accessing database interface
 
 exports.userIsValid = userIsValid;
 exports.addUser = addUser;
 exports.userExists = userExists;
+exports.getUserData = getUserData;
+exports.saveUserData = saveUserData;
