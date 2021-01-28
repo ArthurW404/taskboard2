@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Button, Container } from "react-bootstrap";
+// import { Button, Container } from "react-bootstrap";
 import AuthContext from "../AuthContext";
 import post from "../utils/post";
 import url from "../backend";
@@ -34,7 +34,7 @@ const Signup = () => {
   };
 
   return (
-    <Container>
+    <>
       {jwt.jwt ? <Redirect to="/boards" /> : null}
       <label>New Email:</label>
       <input
@@ -63,8 +63,8 @@ const Signup = () => {
         setState={setShowPassword}
       />
       <br />
-      <Button as="input" type="submit" onClick={() => handleSubmit()} />
-    </Container>
+      <button onClick={() => handleSubmit()}>Submit</button>
+    </>
   );
 };
 

@@ -8,16 +8,15 @@ const BoardCard = (props) => {
 
   return (
     <Link
-      className="card"
       // onMouseEnter={() => setIsMouseOver(true)}
       // onMouseLeave={() => setIsMouseOver(false)}
       style={{ width: "50%" }}
       to="/board"
     >
-      <img src={props.image} className="card-img-top" alt="..." />
-      <div className="card-body">
-        <h5 className="card-title">{props.name}</h5>
-        <p className="card-text">{props.description}</p>
+      <img src={props.image} alt="..." />
+      <div>
+        <h5>{props.name}</h5>
+        <p>{props.description}</p>
       </div>
     </Link>
   );

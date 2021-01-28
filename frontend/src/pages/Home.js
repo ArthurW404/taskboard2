@@ -1,8 +1,8 @@
 import React from "react";
-import { Container } from "react-bootstrap";
+// import { Container } from "react-bootstrap";
 
 const Home = () => {
-  return <Container>Home</Container>;
+  return <>Home</>;
 };
 
 export default Home;

@@ -52,28 +52,14 @@ function App() {
             // don't render logout if not logged in
             jwt ? (
               <>
-                <Link className="navbar-brand" to="/">
-                  Home
-                </Link>
-                <Link className="btn" to="/boards">
-                  Boards
-                </Link>
-                <Link
-                  className="btn btn-outline-danger my-2 my-sm-0"
-                  to="/login"
-                  onClick={removeJwt}
-                >
+                <Link to="/">Home</Link>
+                <Link to="/boards">Boards</Link>
+                <Link to="/login" onClick={removeJwt}>
                   logout
                 </Link>
               </>
             ) : (
-              <Link
-                className="btn btn-outline-primary my-2 my-sm-0"
-                to="/login"
-                // onClick={removeJwt}
-              >
-                login
-              </Link>
+              <Link to="/login">login</Link>
             )
           }
         </Navbar>

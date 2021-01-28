@@ -5,7 +5,7 @@ import React, { useContext } from "react";
 import BoardCard from "../components/BoardCard";
 import url from "../backend";
 import useFetch from "../hooks/useFetch";
-import { Button, Container } from "react-bootstrap";
+// import { Button, Container } from "react-bootstrap";
 
 import AuthContext from "../AuthContext";
 
@@ -32,11 +32,11 @@ const Home = (props) => {
     });
 
   return (
-    <Container>
+    <>
       <h1>Boards page</h1>
       <section>{boardsView}</section>
-      <Button color="primary">Add board</Button>
-    </Container>
+      <button>Add board</button>
+    </>
   );
 };
 

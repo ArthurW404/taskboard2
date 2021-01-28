@@ -1,14 +1,14 @@
 import React from "react";
-import { Button, Container } from "react-bootstrap";
+// import { Button, Container } from "react-bootstrap";
 import url from "../backend";
 import useFetch from "../hooks/useFetch";
 
 const SideBar = () => {
   const boards = useFetch(url + "/boards");
   const boardsView = boards
-    ? boards.map((board) => <Button>{board.name}</Button>)
+    ? boards.map((board) => <button>{board.name}</button>)
     : null;
-  return <Container>{boardsView}</Container>;
+  return <>{boardsView}</>;
 };
 
 export default SideBar;

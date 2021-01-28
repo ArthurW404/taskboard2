@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Container } from "react-bootstrap";
+// import { Button, Container } from "react-bootstrap";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
@@ -7,7 +7,7 @@ const ForgotPassword = () => {
     console.log(email);
   };
   return (
-    <Container>
+    <>
       <label>Enter your email: </label>
       <input
         type="text"
@@ -16,8 +16,8 @@ const ForgotPassword = () => {
         onChange={(e) => setEmail(e.target.value)}
       />
       <br />
-      <Button as="input" type="submit" value="Submit" onClick={submit} />
-    </Container>
+      <button onClick={submit}>Submit</button>
+    </>
   );
 };
 

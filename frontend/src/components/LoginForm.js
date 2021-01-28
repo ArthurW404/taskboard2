@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Redirect } from "react-router-dom";
-import { Button } from "react-bootstrap";
+// import { Button } from "react-bootstrap";
 
 import url from "../backend";
 import AuthContext from "../AuthContext";
@@ -69,14 +69,8 @@ const LoginForm = (props) => {
         setState={setShowPassword}
       />
       <br />
-
-      <Button
-        variant="primary"
-        as="input"
-        type="submit"
-        value="Submit"
-        onClick={(e) => handleSubmit(e)}
-      />
+      <button onClick={(e) => handleSubmit(e)}>Submit</button>
+      {/* <Button variant="primary" as="input" type="submit" value="Submit" /> */}
       {/* <input type="submit" value="Submit" onClick={(e) => handleSubmit(e)} /> */}
     </>
   );
